@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('task-one', [TaskController::class, 'taskOne']);
+Route::get('task-three', [TaskController::class, 'taskThree']);

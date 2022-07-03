@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 
 class TaskController extends Controller
 {
+    public $duplicates;
     public function taskOne(){
         
         $employees = collect([
@@ -47,5 +48,23 @@ class TaskController extends Controller
         $theBestEmployee = $employees[array_keys($employeesMap->toArray(), max($employeesMap->toArray()))[0]];
 
         dd($theBestEmployee);
+    }
+
+    public function taskThree(){
+        $scores = collect ([
+            ['score' => 76, 'team' => 'A'],
+            ['score' => 62, 'team' => 'B'],
+            ['score' => 82, 'team' => 'C'],
+            ['score' => 86, 'team' => 'D'],
+            ['score' => 91, 'team' => 'E'],
+            ['score' => 67, 'team' => 'F'],
+            ['score' => 67, 'team' => 'G'],
+            ['score' => 82, 'team' => 'H'],
+        ]);
+        
+        $sortedScores = $scores->sortByDesc('score');
+        $filtered = $sortedScores->filter()->values();
+        $unique = $filtered->unique('score');
+        dd($unique->all());
     }
 }
